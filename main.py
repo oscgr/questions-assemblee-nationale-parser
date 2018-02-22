@@ -6,7 +6,7 @@ import re
 
 data = {"ALL": {}}
 
-limit_word_occurence = 800
+limit_word_occurence = 2000
 
 FRENCH_BASIC_DICTIONARY = open("dictionary.txt").read().split('\n')
 
