@@ -71,7 +71,7 @@ def data_handler(h_date, h_group, h_text):
 
 # ----------------------------------------------------------------------------
 
-parser = ijson.parse(open('data_questions.json'))
+parser = ijson.parse(open('data.json'))
 
 output = open('output.json', 'w')
 
@@ -99,7 +99,7 @@ print("20 - POPULATING DATA PER DATE AND PARTY...")
 
 parser.close()
 
-parser = ijson.parse(open('data_questions.json'))
+parser = ijson.parse(open('data.json'))
 
 group = "null"
 date = "null"
