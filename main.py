@@ -6,7 +6,7 @@ import re
 
 data = {"ALL": {}}
 
-limit_word_occurence = 2000
+limit_word_occurence = 1000
 
 FRENCH_BASIC_DICTIONARY = open("dictionary.txt").read().split('\n')
 
@@ -51,6 +51,7 @@ def data_handler(h_date, h_group, h_text):
     h_text = re.sub(remove_special_char_regex, ' ', h_text)
     h_text = re.sub(remove_html_tag_regex, ' ', h_text)
     words = h_text.split(' ')
+    h_date = h_date.split('-')[0] + '-' + h_date.split('-')[1]
 
     try:
         data[h_date]

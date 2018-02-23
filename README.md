@@ -7,7 +7,16 @@ Parse le JSON fourni par l'Assemblée Nationale (http://data.assemblee-nationale
 Le parser compte l'occurence des mots prononcés plus de X fois (1000 par défaut, environ 130 mots différents) et les trie par date puis par parti politique, avec leur occurence correspondante.
 
 ## Comment ça marche ?
-blank
+ - Téléchargez le fichier JSON (voir au dessus)
+ - Renommez le en `data.json` et mettez le à la racine
+  - Certaines bibliothèques sont requises :
+    - `ijson`
+ - Lancez le projet (`python main.py`)
+ - le script génère un fichier `output.json` à la racine
 
 ## Modèle
-blank
+ - "ALL" (l'occurrence globale et non triée des mots)
+    - mot : occurrence (int)
+ - mois (format "ANNEE-MOIS")
+    - trigramme parti politique
+        - mot : occurrence (int)
