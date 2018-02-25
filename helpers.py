@@ -45,20 +45,20 @@ def data_handler(d, h_date, h_group, h_text):
     h_date = h_date.split('-')[0] + '-' + h_date.split('-')[1]
 
     try:
-        d[h_date]
+        d["FILTERED"][h_date]
     except:
-        d[h_date] = {}
+        d["FILTERED"][h_date] = {}
     try:
-        d[h_date][h_group]
+        d["FILTERED"][h_date][h_group]
     except:
-        d[h_date][h_group] = {}
+        d["FILTERED"][h_date][h_group] = {}
 
     for word in words:
         if word in d["ALL"] and not ignore_word(word):
             try:
-                d[h_date][h_group][word] += 1
+                d["FILTERED"][h_date][h_group][word] += 1
             except:
-                d[h_date][h_group][word] = 1
+                d["FILTERED"][h_date][h_group][word] = 1
     return d
 
 

@@ -10,7 +10,7 @@ limit_word_occurence = 1000
 # --------------
 
 
-data = {"ALL": {}}
+data = {"ALL": {}, "FILTERED": {}}
 FRENCH_BASIC_DICTIONARY = open("dictionary.txt").read().split('\n')
 parser = ijson.parse(open('data.json'))
 output = open('output.json', 'w')
