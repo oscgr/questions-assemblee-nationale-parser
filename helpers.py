@@ -21,7 +21,7 @@ def ignore_word(word):
     return False
 
 
-def data_handler_ALL(d, h_text):
+def data_parser_ALL(d, h_text):
     h_text = h_text.lower()
     h_text = re.sub(remove_special_char_regex, ' ', h_text)
     h_text = re.sub(remove_html_tag_regex, ' ', h_text)
@@ -37,7 +37,7 @@ def data_handler_ALL(d, h_text):
     return d
 
 
-def data_handler(d, h_date, h_group, h_text):
+def data_parser_FILTERED(d, h_date, h_group, h_text):
     h_text = h_text.lower()
     h_text = re.sub(remove_special_char_regex, ' ', h_text)
     h_text = re.sub(remove_html_tag_regex, ' ', h_text)
@@ -62,10 +62,28 @@ def data_handler(d, h_date, h_group, h_text):
     return d
 
 
-def remove_words_with_less_than_x_occurrences(data, limit, banned_words):
+def remove_words(data, limit, banned_words):
+
     for key, value in data["ALL"].items():
+
         if value < limit:
             data["ALL"].pop(key)
         elif key in banned_words:
             data["ALL"].pop(key)
     return data
+
+
+def csv_generator_all(d):
+    output = ""
+    for k, v in d["ALL"].items():
+        output += k + "," + str(v) + "\n"
+    return output
+
+
+def csv_generator_filtered(d):
+    output = ""
+    for date, partis in d["FILTERED"].items():
+        for parti, words in partis.items():
+            for word, occurrence in words.items():
+                output += date + "," + parti + "," + word + "," + str(occurrence) + "\n"
+    return output

@@ -1188,6 +1188,7 @@ lier
 discussion
 admettre
 banc
+bancs
 vers
 respecter
 rose
