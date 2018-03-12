@@ -5,7 +5,7 @@ from helpers import *
 # --- PARAMS ---
 
 
-limit_word_occurence = 1000
+limit_word_occurence = 800
 
 # --------------
 
@@ -14,8 +14,7 @@ data = {"ALL": {}, "FILTERED": {}}
 FRENCH_BASIC_DICTIONARY = open("dictionary.txt").read().split('\n')
 parser = ijson.parse(open('data.json'))
 output_json = open('JSON_output.json', 'w')
-output_CSV_all = open('CSV_ALL.txt', 'w')
-output_CSV_filtered = open('CSV_filtered.txt', 'w')
+output_CSV_filtered = open('CSV.txt', 'w')
 
 print("00 - CAPTURING WORDS...")
 
@@ -55,8 +54,6 @@ for prefix, event, value in parser:
 print("21 - POPULATED DATA")
 print("30 - GENERATING CSV...")
 
-
-csv_all = csv_generator_all(data)
 csv_filtered = csv_generator_filtered(data)
 
 print("31 - GENERATED CSV")
@@ -64,9 +61,6 @@ print("40 - WRITING TO FILE...")
 
 output_json.write(json.dumps(data))
 output_json.close()
-
-output_CSV_all.write(csv_all)
-output_CSV_all.close()
 
 output_CSV_filtered.write(csv_filtered)
 output_CSV_filtered.close()

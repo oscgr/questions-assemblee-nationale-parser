@@ -4,7 +4,7 @@ import re
 ignore_word_regex_1 = re.compile('[=<>]')
 ignore_word_regex_2 = re.compile('[0-9]')
 remove_html_tag_regex = re.compile('<[^>]*>')
-remove_special_char_regex = re.compile('[-(.),;:\']')
+remove_special_char_regex = re.compile('[-(.),;:]')
 
 
 def unicode_normalize(t):
@@ -24,6 +24,7 @@ def ignore_word(word):
 def data_parser_ALL(d, h_text):
     h_text = h_text.lower()
     h_text = re.sub(remove_special_char_regex, ' ', h_text)
+    h_text = h_text.replace('\'', ' ')
     h_text = re.sub(remove_html_tag_regex, ' ', h_text)
 
     words = h_text.split(' ')
@@ -63,7 +64,6 @@ def data_parser_FILTERED(d, h_date, h_group, h_text):
 
 
 def remove_words(data, limit, banned_words):
-
     for key, value in data["ALL"].items():
 
         if value < limit:
@@ -73,17 +73,11 @@ def remove_words(data, limit, banned_words):
     return data
 
 
-def csv_generator_all(d):
-    output = ""
-    for k, v in d["ALL"].items():
-        output += k + "," + str(v) + "\n"
-    return output
-
-
 def csv_generator_filtered(d):
-    output = ""
+    output = []
     for date, partis in d["FILTERED"].items():
         for parti, words in partis.items():
             for word, occurrence in words.items():
-                output += date + "," + parti + "," + word + "," + str(occurrence) + "\n"
-    return output
+                output.append(date + "," + parti + "," + word + "," + str(occurrence))
+    output.sort()
+    return "\n".join(output)
