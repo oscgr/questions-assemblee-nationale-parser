@@ -5,7 +5,7 @@ from helpers import *
 # --- PARAMS ---
 
 
-limit_word_occurence = 800
+limit_word_occurence = 100
 
 # --------------
 
